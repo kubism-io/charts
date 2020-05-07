@@ -6,7 +6,7 @@ layout: default
 
 {{ site.description }}
 
-You can add this repository to your local helm configuration as follows :
+You can add this repository to your local helm configuration as follows:
 
 ```console
 $ helm repo add {{ site.repo_name }} {{ site.url }}
