@@ -3,7 +3,7 @@ title: Kubism.io Helm Charts
 description: A chart repo for all Kubism.IO Helm Charts.
 theme: minima
 url: "https://kubism.github.io/charts/"
-repo_name: charts
+repo_name: kubism.io
 
 exclude:
   - Gemfile
