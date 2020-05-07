@@ -1,0 +1,11 @@
+# _config.yaml
+title: Our Helm chart repo
+description: A chart repo for storing charts.
+theme: minima
+url: "https://kubism.github.io/charts/"
+repo_name: charts
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - .gitignore
