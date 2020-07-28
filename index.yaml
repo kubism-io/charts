@@ -2,6 +2,17 @@ apiVersion: v1
 entries:
   backup-operator:
   - apiVersion: v1
+    created: "2020-07-28T10:35:07.025928054Z"
+    description: K8s operator to provide backups for several sources
+    digest: adf628b394913a6d3fbc679e76e528dae0c941492a77195bd5f9dc55ec0ffd43
+    home: https://github.com/kubism/backup-operator
+    name: backup-operator
+    sources:
+    - https://github.com/kubism/backup-operator
+    urls:
+    - https://kubism.github.io/charts/backup-operator-0.1.3.tgz
+    version: 0.1.3
+  - apiVersion: v1
     created: "2020-07-23T09:56:23.009475826Z"
     description: K8s operator to provide backups for several sources
     digest: e0255be453000a56e398179ef76c0237e8f26bb4cd12f76cdbfaa85d9bec39a4
@@ -78,4 +89,4 @@ entries:
     urls:
     - https://kubism.github.io/charts/backup-operator-v0.1.0-pre15.n000.hbf86fcb.tgz
     version: v0.1.0-pre15.n000.hbf86fcb
-generated: "2020-07-23T09:56:23.008873638Z"
+generated: "2020-07-28T10:35:07.025407874Z"
