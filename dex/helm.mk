@@ -1,13 +1,11 @@
-HELM                ?= helm3
-HELM_OUTPUT_DIR     ?= tmp
-K8S_NAMESPACE ?= dex
+K8S_NAMESPACE 		?= dex
 
 .PHONY: helm-template-clean helm-dependency-update helm-install helm-uninstall helm-template
 
-template-clean:
+clean:
 	@rm -Rf $(HELM_OUTPUT_DIR)
 
-dependency-update:
+dependencies:
 	@$(HELM) dep update .
 
 install:
