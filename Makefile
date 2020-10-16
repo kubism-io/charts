@@ -1,7 +1,6 @@
 HELM      			?= helm3
 HELM_OUTPUT_DIR     ?= tmp
 
-VERSION   ?= 0.0.1-local
 export 
 
 # helm
@@ -10,5 +9,11 @@ helm-add-kubism:
 	@$(HELM) repo add kubism.io https://kubism.github.io/charts/
 	@$(HELM) repo update
 
+helm-lint:
+	$(HELM) lint charts/*
+
+helm-publish: $(HELM3)
+	./ci/publish.sh
+
 dex-helm-%:
-	@$(MAKE) -f dex/helm.mk $*
+	@$(MAKE) -C charts -f dex/helm.mk $*

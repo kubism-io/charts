@@ -1,7 +1,7 @@
 apiVersion: v1
 name: dex
-version: 2.2.0
-appVersion: 2.18.0
+version: 1.0.0
+appVersion: 2.25.0
 description: A federated OpenID Connect provider
 keywords:
 - dex
