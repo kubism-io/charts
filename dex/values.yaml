@@ -32,7 +32,9 @@ replicas: 1
     # memory: 50Mi
 
 # grpc support
-grpc: true
+grpc:
+  enabled: true
+  enableTLS: true
 
 # https termination by dex itself
 https: false
