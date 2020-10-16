@@ -6,5 +6,9 @@ export
 
 # helm
 
+helm-add-kubism:
+	@$(HELM) repo add kubism.io https://kubism.github.io/charts/
+	@$(HELM) repo update
+
 dex-helm-%:
 	@$(MAKE) -f dex/helm.mk $*
