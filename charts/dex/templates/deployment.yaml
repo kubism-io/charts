@@ -62,7 +62,7 @@ spec:
         - name: {{ if .Values.https }}https{{ else }}http{{ end }}
           containerPort: {{ .Values.ports.web.containerPort }}
           protocol: TCP
-        {{- if .Values.grpc.enabled }}
+        {{- if .Values.grpc }}
         - name: grpc
           containerPort: {{ .Values.ports.grpc.containerPort }}
           protocol: TCP
@@ -76,7 +76,7 @@ spec:
         - mountPath: /etc/dex/tls/https/server
           name: https-tls
 {{- end }}
-{{- if and .Values.grpc.enabled .Values.grpc.enableTLS }}
+{{- if .Values.grpc }}
         - mountPath: /etc/dex/tls/grpc/server
           name: grpc-tls-server
         - mountPath: /etc/dex/tls/grpc/ca
@@ -99,7 +99,7 @@ spec:
           defaultMode: 420
           secretName: {{ $httpsTlsSecretName | quote }}
 {{- end }}
-{{- if and .Values.grpc.enabled .Values.grpc.enableTLS }}
+{{- if and .Values.grpc }}
       - name: grpc-tls-server
         secret:
           defaultMode: 420
