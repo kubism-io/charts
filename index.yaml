@@ -122,4 +122,22 @@ entries:
     urls:
     - https://kubism.github.io/charts/backup-operator-v0.1.0-pre15.n000.hbf86fcb.tgz
     version: v0.1.0-pre15.n000.hbf86fcb
+  dex:
+  - apiVersion: v1
+    appVersion: 2.25.0
+    created: "2020-10-16T13:03:00.610702189Z"
+    description: A federated OpenID Connect provider
+    digest: 6749cb7db709d04faf414f7431252e88e23a6545727ca8736568ab25a6a103a1
+    home: https://github.com/dexidp/dex/
+    icon: https://github.com/dexidp/dex/raw/master/Documentation/logos/dex-glyph-color.png
+    keywords:
+    - dex
+    - oidc
+    maintainers:
+    - email: github@jast-bytes.de
+      name: iss0
+    name: dex
+    urls:
+    - https://github.com/kubism/charts/releases/download/dex-1.0.0/dex-1.0.0.tgz
+    version: 1.0.0
 generated: "2020-09-30T11:09:49.215531165Z"
