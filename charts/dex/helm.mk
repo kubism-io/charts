@@ -1,4 +1,4 @@
-K8S_NAMESPACE 		?= dex
+K8S_NAMESPACE ?= dex
 
 .PHONY: helm-template-clean helm-dependency-update helm-install helm-uninstall helm-template
 

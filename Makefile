@@ -1,5 +1,7 @@
+BUILD_PATH ?= $(shell pwd)
+
 HELM      			?= helm3
-HELM_OUTPUT_DIR     ?= tmp
+HELM_OUTPUT_DIR     ?= $(BUILD_PATH)/tmp
 
 export 
 
