@@ -99,7 +99,7 @@ spec:
           defaultMode: 420
           secretName: {{ $httpsTlsSecretName | quote }}
 {{- end }}
-{{- if and .Values.grpc }}
+{{- if .Values.grpc }}
       - name: grpc-tls-server
         secret:
           defaultMode: 420
