@@ -84,6 +84,7 @@ Parameters introduced starting from v2
 | `config.staticPasswords` | Maps to the dex config `staticPasswords` list param | `""` |
 | `config.storage` | Maps to the dex config `storage` dict param | `{"type": "kubernetes", "config": {"inCluster": true}}` |
 | `config.web.address` | dex http/https listen address | `0.0.0.0` |
+| `config.web.allowedOrigins` | dex web cors allowed origins | `[]` |
 | `config.web.tlsCert` | Maps to the dex config `web.tlsCert` param | `/etc/dex/tls/https/server/tls.crt` |
 | `config.web.tlsKey` | Maps to the dex config `web.tlsKey` param | `/etc/dex/tls/https/server/tls.key` |
 | `grpc` | Enable dex grpc endpoint | `true` |

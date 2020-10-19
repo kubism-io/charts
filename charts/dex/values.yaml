@@ -147,6 +147,7 @@ config:
   web:
     # port is taken from ports section above
     address: 0.0.0.0
+    allowedOrigins: []
     tlsCert: /etc/dex/tls/https/server/tls.crt
     tlsKey: /etc/dex/tls/https/server/tls.key
 # Section below is relevant only when grpc support is enabled
