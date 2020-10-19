@@ -6,6 +6,7 @@
 image: quay.io/dexidp/dex
 imageTag: "v2.25.0"
 imagePullPolicy: "IfNotPresent"
+pullSecret: ""
 
 inMiniKube: false
 

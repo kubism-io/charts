@@ -37,6 +37,10 @@ spec:
 {{ toYaml .Values.podAnnotations | indent 8 }}
         {{- end }}
     spec:
+      {{- if .Values.pullSecret }}
+      imagePullSecrets:
+      - name: {{ .Values.pullSecret }}
+      {{- end }}
       serviceAccountName: {{ template "dex.serviceAccountName" . }}
       nodeSelector:
 {{ toYaml .Values.nodeSelector | indent 10 }}
@@ -52,6 +56,7 @@ spec:
       - name: main
         image: "{{ .Values.image }}:{{ .Values.imageTag }}"
         imagePullPolicy: {{ .Values.imagePullPolicy }}
+
         command:
         - /usr/local/bin/dex
         - serve
