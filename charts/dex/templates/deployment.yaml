@@ -91,7 +91,7 @@ spec:
           items:
           - key: config.yaml
             path: config.yaml
-          secretName: {{ template "dex.fullname" . }}
+          secretName: {{ if .Values.config.existingSecret }}{{ .Values.config.existingSecret }}{{ else }}{{ template "dex.fullname" . }}{{ end }}
         name: config
 {{- if .Values.https }}
       - name: https-tls

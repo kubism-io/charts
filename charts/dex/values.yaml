@@ -138,6 +138,7 @@ podDisruptionBudget: {}
 
 config:
   issuer: http://dex.io:8080
+  existingSecret: ""
   storage:
     type: kubernetes
     config:
