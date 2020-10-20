@@ -99,6 +99,7 @@ certs:
   # Section below is relevant only when grpc support is enabled
   grpc:
     create: true
+    use: true
     activeDeadlineSeconds: 300
     altNames:
       - dex.io

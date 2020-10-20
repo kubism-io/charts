@@ -80,7 +80,7 @@ spec:
         - mountPath: /etc/dex/tls/https/server
           name: https-tls
 {{- end }}
-{{- if .Values.grpc }}
+{{- if and .Values.grpc .Values.certs.grpc.use }}
         - mountPath: /etc/dex/tls/grpc/server
           name: grpc-tls-server
         - mountPath: /etc/dex/tls/grpc/ca
@@ -103,7 +103,7 @@ spec:
           defaultMode: 420
           secretName: {{ $httpsTlsSecretName | quote }}
 {{- end }}
-{{- if .Values.grpc }}
+{{- if and .Values.grpc .Values.certs.grpc.use }}
       - name: grpc-tls-server
         secret:
           defaultMode: 420
