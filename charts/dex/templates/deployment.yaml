@@ -103,20 +103,9 @@ spec:
         name: config
 {{- if eq .Values.config.storage.type "postgres" }}
       - name: certs
-        projected:
-          sources:
-          - secret:
-              name: {{ .Values.config.storage.config.secret }}
-              items:
-                - key: ca.crt
-                  path: ca.crt
-                  mode: 0400
-                - key: tls.crt
-                  path: tls.crt
-                  mode: 0400
-                - key: tls.key
-                  path: tls.key
-                  mode: 0400
+        secret:
+          defaultMode: 420
+          secretName: {{ .Values.config.storage.config.secret }}
 {{- end }}
 {{- if .Values.https }}
       - name: https-tls
