@@ -79,7 +79,6 @@ spec:
 {{- if eq .Values.config.storage.type "postgres" }}
         - name: certs
           mountPath: /etc/dex/tls/db
-          readOnly: true
 {{- end }}
 {{- if .Values.https }}
         - mountPath: /etc/dex/tls/https/server
