@@ -76,6 +76,10 @@ spec:
         volumeMounts:
         - mountPath: /etc/dex/cfg
           name: config
+{{- if eq .Values.config.storage.type "postgres" }}
+        - name: certs
+          mountPath: /etc/dex/tls/db
+{{- end }}
 {{- if .Values.https }}
         - mountPath: /etc/dex/tls/https/server
           name: https-tls
@@ -97,6 +101,23 @@ spec:
             path: config.yaml
           secretName: {{ if .Values.config.existingSecret }}{{ .Values.config.existingSecret }}{{ else }}{{ template "dex.fullname" . }}{{ end }}
         name: config
+{{- if eq .Values.config.storage.type "postgres" }}
+      - name: certs
+        projected:
+          sources:
+          - secret:
+              name: {{ .Values.config.storage.config.secret }}
+              items:
+                - key: ca.crt
+                  path: ca.crt
+                  mode: 0400
+                - key: tls.crt
+                  path: tls.crt
+                  mode: 0400
+                - key: tls.key
+                  path: tls.key
+                  mode: 0400
+{{- end }}
 {{- if .Values.https }}
       - name: https-tls
         secret:
