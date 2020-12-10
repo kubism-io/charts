@@ -60,11 +60,13 @@ spec:
           - /bin/sh
           - -c
           - |
-            chmod 0400 /etc/dex
-            chown -R 1001:1001 /etc/dex
+            cp /input/ca.crt /input/client.crt /input/client.key /certs
+            chown 1001:1001 /certs/*
           volumeMounts:
-            - name: config-dir
-              mountPath: /etc/dex
+            - name: certs-input
+              mountPath: /input
+            - name: certs
+              mountPath: /certs
           securityContext:
             runAsUser: 0
       containers:
@@ -89,13 +91,11 @@ spec:
         env:
 {{ toYaml .Values.env | indent 10 }}
         volumeMounts:
-        - name: config-dir
-          mountPath: /etc/dex
         - name: config
           mountPath: /etc/dex/cfg
 {{- if eq .Values.config.storage.type "postgres" }}
         - name: certs
-          mountPath: /etc/dex
+          mountPath: /etc/dex/certs
 {{- end }}
 {{- if .Values.https }}
         - mountPath: /etc/dex/tls/https/server
@@ -111,8 +111,6 @@ spec:
 {{ toYaml .Values.extraVolumeMounts | indent 8 }}
 {{- end }}
       volumes:
-      - name: config-dir
-        emptyDir: {}
       - secret:
           defaultMode: 420
           items:
@@ -122,13 +120,15 @@ spec:
         name: config
 {{- if eq .Values.config.storage.type "postgres" }}
       - name: certs
+        emptyDir: {}
+      - name: certs-input
         projected:
           sources:
             - secret:
                 name: {{ .Values.config.storage.config.secret }}
                 items:
                   - key: ca.crt
-                    path: postgres.ca
+                    path: ca.ca
                     mode: 0400
                   - key: tls.crt
                     path: client.crt
