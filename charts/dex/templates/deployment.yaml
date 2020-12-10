@@ -111,13 +111,13 @@ spec:
                 items:
                   - key: ca.crt
                     path: postgres.ca
-                    mode: 0420
+                    mode: 0600
                   - key: tls.crt
                     path: client.crt
-                    mode: 0420
+                    mode: 0600
                   - key: tls.key
                     path: client.key
-                    mode: 0420
+                    mode: 0600
 {{- end }}
 {{- if .Values.https }}
       - name: https-tls
