@@ -62,9 +62,11 @@ spec:
           - |
             cp /input/ca.crt /input/client.crt /input/client.key /certs
             chown 1001:1001 /certs/*
+            chmod 0400 /certs/*
           volumeMounts:
             - name: certs-input
               mountPath: /input
+              readOnly: true
             - name: certs
               mountPath: /certs
           securityContext:
@@ -77,6 +79,8 @@ spec:
         - /usr/local/bin/dex
         - serve
         - /etc/dex/cfg/config.yaml
+        securityContext:
+          runAsUser: 1001
         resources:
 {{ toYaml .Values.resources | indent 10 }}
         ports:
@@ -128,7 +132,7 @@ spec:
                 name: {{ .Values.config.storage.config.secret }}
                 items:
                   - key: ca.crt
-                    path: ca.ca
+                    path: ca.crt
                     mode: 0400
                   - key: tls.crt
                     path: client.crt
