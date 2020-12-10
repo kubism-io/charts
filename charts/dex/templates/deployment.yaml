@@ -38,6 +38,9 @@ spec:
 {{ toYaml .Values.podAnnotations | indent 8 }}
         {{- end }}
     spec:
+      securityContext:
+        runAsUser: 1001
+        runAsGroup: 1001
       serviceAccountName: {{ template "dex.serviceAccountName" . }}
       nodeSelector:
 {{ toYaml .Values.nodeSelector | indent 10 }}
@@ -111,13 +114,13 @@ spec:
                 items:
                   - key: ca.crt
                     path: postgres.ca
-                    mode: 0600
+                    mode: 0400
                   - key: tls.crt
                     path: client.crt
-                    mode: 0600
+                    mode: 0400
                   - key: tls.key
                     path: client.key
-                    mode: 0600
+                    mode: 0400
 {{- end }}
 {{- if .Values.https }}
       - name: https-tls
