@@ -38,9 +38,6 @@ spec:
 {{ toYaml .Values.podAnnotations | indent 8 }}
         {{- end }}
     spec:
-      securityContext:
-        runAsUser: 1001
-        runAsGroup: 1001
       serviceAccountName: {{ template "dex.serviceAccountName" . }}
       nodeSelector:
 {{ toYaml .Values.nodeSelector | indent 10 }}
@@ -56,6 +53,20 @@ spec:
       imagePullSecrets:
 {{ toYaml . | indent 8 }}
 {{- end }}
+      initContainers:
+        - name: init-dex
+          image: "{{ .Values.image }}:{{ .Values.imageTag }}"
+          command:
+          - /bin/sh
+          - -c
+          - |
+            chmod 0400 /etc/dex
+            chown -R 1001:1001 /etc/dex
+          volumeMounts:
+            - name: config-dir
+              mountPath: /etc/dex
+          securityContext:
+            runAsUser: 0
       containers:
       - name: main
         image: "{{ .Values.image }}:{{ .Values.imageTag }}"
@@ -78,8 +89,10 @@ spec:
         env:
 {{ toYaml .Values.env | indent 10 }}
         volumeMounts:
-        - mountPath: /etc/dex/cfg
-          name: config
+        - name: config-dir
+          mountPath: /etc/dex
+        - name: config
+          mountPath: /etc/dex/cfg
 {{- if eq .Values.config.storage.type "postgres" }}
         - name: certs
           mountPath: /etc/dex
@@ -98,6 +111,8 @@ spec:
 {{ toYaml .Values.extraVolumeMounts | indent 8 }}
 {{- end }}
       volumes:
+      - name: config-dir
+        emptyDir: {}
       - secret:
           defaultMode: 420
           items:
