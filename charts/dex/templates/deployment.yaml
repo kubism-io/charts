@@ -79,7 +79,7 @@ spec:
           name: config
 {{- if eq .Values.config.storage.type "postgres" }}
         - name: certs
-          mountPath: /etc/dex/tls/db
+          mountPath: /etc/dex
 {{- end }}
 {{- if .Values.https }}
         - mountPath: /etc/dex/tls/https/server
@@ -104,9 +104,20 @@ spec:
         name: config
 {{- if eq .Values.config.storage.type "postgres" }}
       - name: certs
-        secret:
-          defaultMode: 400
-          secretName: {{ .Values.config.storage.config.secret }}
+        projected:
+          sources:
+            - secret:
+                name: {{ .Values.config.storage.config.secret }}
+                items:
+                  - key: ca.crt
+                    path: postgres.ca
+                    mode: 0400
+                  - key: tls.crt
+                    path: client.crt
+                    mode: 0400
+                  - key: tls.key
+                    path: client.key
+                    mode: 0400
 {{- end }}
 {{- if .Values.https }}
       - name: https-tls
