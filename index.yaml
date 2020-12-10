@@ -125,6 +125,23 @@ entries:
   dex:
   - apiVersion: v1
     appVersion: 2.25.0
+    created: "2020-12-10T10:25:20.463572354Z"
+    description: A federated OpenID Connect provider
+    digest: f55e77242c625a24ac6ca0e184e101ba93ab74bcc0f83c58bfcb6ae92252cfb5
+    home: https://github.com/dexidp/dex/
+    icon: https://github.com/dexidp/dex/raw/master/Documentation/logos/dex-glyph-color.png
+    keywords:
+    - dex
+    - oidc
+    maintainers:
+    - email: github@jast-bytes.de
+      name: iss0
+    name: dex
+    urls:
+    - https://github.com/kubism/charts/releases/download/dex-1.0.16/dex-1.0.16.tgz
+    version: 1.0.16
+  - apiVersion: v1
+    appVersion: 2.25.0
     created: "2020-12-10T09:58:33.492920793Z"
     description: A federated OpenID Connect provider
     digest: 98aa1b96698a7264592c7ba54fe61b1ce305d9e3fa924cc1d74e74d663523851
