@@ -11,8 +11,10 @@ kind: Deployment
 metadata:
   name: {{ template "dex.fullname" . }}
   labels:
-{{ include "dex.labels" . | indent 4 }}
-    app.kubernetes.io/component: dex
+    {{- include "dex.labels" . | nindent 4 }}
+    {{- with .Values.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
 spec:
   replicas: {{ .Values.replicas }}
   strategy:
@@ -22,15 +24,14 @@ spec:
     type: RollingUpdate
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ include "dex.name" . }}
-      app.kubernetes.io/instance: {{ .Release.Name }}
-      app.kubernetes.io/component: dex
+      {{- include "dex.selectorLabels" . | nindent 8 }}
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: {{ include "dex.name" . }}
-        app.kubernetes.io/instance: {{ .Release.Name }}
-        app.kubernetes.io/component: dex
+        {{- include "dex.labels" . | nindent 8 }}
+        {{- with .Values.labels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/secret.yaml") . | sha256sum }}
         {{- if .Values.podAnnotations }}
