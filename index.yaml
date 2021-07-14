@@ -133,6 +133,17 @@ entries:
     urls:
     - https://kubism.github.io/charts/backup-operator-v0.1.0-pre15.n000.hbf86fcb.tgz
     version: v0.1.0-pre15.n000.hbf86fcb
+  - apiVersion: v1
+    created: "2021-07-14T09:20:46.154994654Z"
+    description: K8s operator to provide backups for several sources
+    digest: f50063527d97e76540d58887581e9f1c46211f7013df26ecb8c16167eb2dfb8d
+    home: https://github.com/kubism/backup-operator
+    name: backup-operator
+    sources:
+    - https://github.com/kubism/backup-operator
+    urls:
+    - https://kubism.github.io/charts/backup-operator-0.0.1-n001.habcec23.tgz
+    version: 0.0.1-n001.habcec23
   dex:
   - apiVersion: v1
     appVersion: 2.25.0
@@ -457,4 +468,4 @@ entries:
     urls:
     - https://github.com/kubism/charts/releases/download/dex-1.0.0/dex-1.0.0.tgz
     version: 1.0.0
-generated: "2021-07-13T18:17:59.556246582+02:00"
+generated: "2021-07-14T09:20:46.154456248Z"
